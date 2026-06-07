@@ -1,0 +1,36 @@
+# macOS
+.DS_Store
+
+# Reports and office artifacts
+*.docx
+*.pdf
+*.xlsx
+~$*
+
+# Raw and generated data
+*.csv
+*.tsv
+*.json
+*.txt
+
+# Large trained models
+*.joblib
+*.pkl
+*.pickle
+
+# Python cache
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# R / RStudio artifacts
+.Rhistory
+.RData
+.Rproj.user/
+
+# Local output folders
+data/
+report/
+model/
+report_render/
+input_data/
