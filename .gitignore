@@ -15,6 +15,7 @@
 
 # Large trained models
 *.joblib
+*.rds
 *.pkl
 *.pickle
 

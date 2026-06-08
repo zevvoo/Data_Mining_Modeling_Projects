@@ -20,10 +20,10 @@ The repository focuses on reproducible code. Raw datasets, generated reports, pr
 │
 └── microbiome_disease_project/
     ├── scripts/
-    │   └── 01_train_predict.py
+    │   └── 01_train_predict.R
     └── webapp/
         ├── README.md
-        └── app.py
+        └── app.R
 ```
 
 ## Project 1: FIFA World Cup Ranking Prediction
@@ -74,24 +74,24 @@ This project predicts disease status from microbiome feature profiles across 23 
 1. Load labeled microbiome training data and unlabeled test data.
 2. Validate train/test feature alignment.
 3. Remove near-zero variance features.
-4. Compare multiclass classifiers with stratified 5-fold cross-validation.
-5. Train a soft-voting ensemble of ExtraTrees and Logistic Regression.
+4. Select informative microbiome features using class-wise ANOVA-style scores.
+5. Train an R-based ensemble of multinomial logistic regression and k-nearest neighbors.
 6. Predict disease labels for test samples.
-7. Serve predictions through a simple Flask upload interface.
+7. Serve predictions through a simple Shiny upload interface.
 
 ### Main Scripts
 
 ```text
-microbiome_disease_project/scripts/01_train_predict.py
+microbiome_disease_project/scripts/01_train_predict.R
 ```
 
 Runs preprocessing, model comparison, final training, and prediction generation.
 
 ```text
-microbiome_disease_project/webapp/app.py
+microbiome_disease_project/webapp/app.R
 ```
 
-Runs a local Flask web service that accepts TSV uploads and returns predicted disease labels.
+Runs a local Shiny web service that accepts TSV uploads and returns predicted disease labels.
 
 ## Requirements
 
@@ -109,24 +109,8 @@ data.table
 MASS
 rpart
 nnet
-```
-
-### Python Packages
-
-The microbiome project uses Python packages such as:
-
-```text
-pandas
-scikit-learn
-joblib
-openpyxl
-flask
-```
-
-Install Python dependencies with:
-
-```bash
-pip install pandas scikit-learn joblib openpyxl flask
+class
+shiny
 ```
 
 ## Data and Model Files
@@ -138,7 +122,7 @@ To reproduce the full workflows, place the required input files in the expected 
 For the microbiome web service, a trained model file is required:
 
 ```text
-microbiome_disease_project/webapp/microbiome_disease_voting_model.joblib
+microbiome_disease_project/webapp/microbiome_disease_model_R.rds
 ```
 
 Because this model file can be large, it is recommended to distribute it separately, for example through a GitHub Release asset or external storage link.
