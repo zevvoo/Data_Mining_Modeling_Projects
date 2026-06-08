@@ -119,12 +119,20 @@ Raw input data and generated outputs are not included in this repository.
 
 To reproduce the full workflows, place the required input files in the expected input folders or update the path constants in each script.
 
+For the microbiome modeling script, place the input files here:
+
+```text
+microbiome_disease_project/input_data/Q2_train.tsv
+microbiome_disease_project/input_data/Q2_test.tsv
+```
+
 For the microbiome web service, a trained model file is required:
 
 ```text
-microbiome_disease_project/webapp/microbiome_disease_model_R.rds
+microbiome_disease_project/model/microbiome_disease_model_R.rds
 ```
 
+The Shiny app also accepts the model file inside `microbiome_disease_project/webapp/`.
 Because this model file can be large, it is recommended to distribute it separately, for example through a GitHub Release asset or external storage link.
 
 ## Uploading This Project to GitHub

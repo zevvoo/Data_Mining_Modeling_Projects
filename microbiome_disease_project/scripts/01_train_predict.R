@@ -10,8 +10,26 @@ library(class)
 
 set.seed(2026)
 
-base_dir <- "/Users/yoojewoo/Desktop/26-1/DataMining/과제/HW2/microbiome_disease_project"
-source_dir <- "/Users/yoojewoo/Desktop/26-1/DataMining/과제/HW2/Homework2"
+find_project_dir <- function() {
+  wd <- normalizePath(getwd())
+  candidates <- unique(c(
+    wd,
+    dirname(wd),
+    file.path(wd, "microbiome_disease_project"),
+    file.path(dirname(wd), "microbiome_disease_project")
+  ))
+
+  for (candidate in candidates) {
+    if (file.exists(file.path(candidate, "scripts", "01_train_predict.R"))) {
+      return(candidate)
+    }
+  }
+
+  stop("Project directory not found. Run this script from the repository, project, or scripts folder.")
+}
+
+base_dir <- find_project_dir()
+source_dir <- file.path(base_dir, "input_data")
 data_dir <- file.path(base_dir, "data")
 model_dir <- file.path(base_dir, "model")
 dir.create(data_dir, recursive = TRUE, showWarnings = FALSE)
